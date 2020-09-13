@@ -11,23 +11,26 @@ const InputComponent = ({
   placeholder = 'Type a text here ...',
   password,
   email,
+  phone,
 }) => {
   return (
     <>
       <View style={[styles.inputGrup, styles.inputError(error)]}>
-        <Icon
-          name={icon}
-          color={colors.secondary}
-          size={18}
-          style={styles.icon}
-        />
+        <View style={styles.containerIcon}>
+          <Icon
+            name={icon}
+            color={colors.secondary}
+            size={18}
+            style={styles.icon}
+          />
+        </View>
         <TextInput
           style={styles.inputText}
           value={value}
           onChangeText={onChange}
           placeholder={placeholder}
           secureTextEntry={password}
-          keyboardType={email ? 'email-address' : 'default'}
+          keyboardType={email ? 'email-address' : phone ? 'numeric' : 'default'}
         />
       </View>
       {error && <Text style={styles.error}>{error && error}</Text>}
@@ -78,5 +81,10 @@ const styles = StyleSheet.create({
           borderWidth: 1,
         }
       : {};
+  },
+
+  containerIcon: {
+    width: 30,
+    alignItems: 'center',
   },
 });

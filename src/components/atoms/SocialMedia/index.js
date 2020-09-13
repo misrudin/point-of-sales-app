@@ -2,10 +2,14 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import Ripple from 'react-native-material-ripple';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import {colors} from '../../../utils';
 
-const SocialMediaButotn = ({icon = 'google', bg, color}) => {
+const SocialMediaButotn = ({icon = 'google', bg, color, onPress}) => {
   return (
-    <Ripple style={styles.button(bg)}>
+    <Ripple
+      onPress={onPress}
+      rippleColor={colors.ripple}
+      style={styles.button(bg)}>
       <Icon size={30} name={icon} color={color} />
     </Ripple>
   );

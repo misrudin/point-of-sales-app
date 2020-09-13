@@ -6,4 +6,5 @@ export const colors = {
   white: '#f4f4f4',
   error: 'red',
   header: '#FFF',
+  ripple: 'rgb(255,255,255)',
 };

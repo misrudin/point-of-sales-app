@@ -12,19 +12,31 @@ import {
 } from '../../components';
 import {colors} from '../../utils';
 
-const LoginPage = ({navigation}) => {
+const Register = ({navigation}) => {
   return (
     <ScrollView
       contentContainerStyle={styles.scroll}
       showsVerticalScrollIndicator={false}>
       <Box center>
         <Container>
-          <Label text="DAGANG" center size={50} />
+          <Label text="Daftar" center size={50} />
           <Spacer h={50} />
 
-          <Label text="Email / Phone" size={14} />
+          <Label text="Nama" size={14} />
           <Spacer h={5} />
-          <Input placeholder="Email / Phone" email icon="envelope-square" />
+          <Input placeholder="Nama" icon="user" />
+
+          <Spacer h={15} />
+
+          <Label text="Telephone" size={14} />
+          <Spacer h={5} />
+          <Input placeholder="Telephone" phone icon="phone" />
+
+          <Spacer h={15} />
+
+          <Label text="Email" size={14} />
+          <Spacer h={5} />
+          <Input placeholder="Email" email icon="envelope-square" />
 
           <Spacer h={15} />
 
@@ -34,12 +46,11 @@ const LoginPage = ({navigation}) => {
 
           <Spacer h={40} />
           <Button
-            text="Masuk"
+            text="Daftar"
             color={colors.white}
             bg="blue"
-            onPress={() => navigation.navigate('MainMenu')}
+            onPress={() => navigation.navigate('RegisterStore')}
           />
-
           <Spacer h={10} />
           <Label
             text="Sudah punya akun ?"
@@ -48,12 +59,11 @@ const LoginPage = ({navigation}) => {
             size={14}
           />
           <Spacer h={10} />
-
           <Button
-            text="Daftar"
+            text="Masuk"
             color={colors.white}
             bg="green"
-            onPress={() => navigation.navigate('Register')}
+            onPress={() => navigation.goBack()}
           />
 
           <Spacer h={40} />
@@ -76,7 +86,7 @@ const LoginPage = ({navigation}) => {
   );
 };
 
-export default LoginPage;
+export default Register;
 
 const styles = StyleSheet.create({
   scroll: {minHeight: '100%'},
