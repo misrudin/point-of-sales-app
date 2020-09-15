@@ -27,7 +27,7 @@ const DataKaryawan = ({navigation}) => {
         ]}>
         <Header
           navigation={navigation}
-          text="DataKaryawan"
+          text="Data Karyawan"
           header={HEADER_HEIGHT}
           back
         />

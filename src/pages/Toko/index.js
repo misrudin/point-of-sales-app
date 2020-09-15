@@ -27,7 +27,7 @@ const Toko = ({navigation}) => {
         ]}>
         <Header
           navigation={navigation}
-          text="My Toko"
+          text="Toko"
           header={HEADER_HEIGHT}
           back
         />

@@ -74,7 +74,7 @@ const RegisterStore = ({navigation}) => {
             text="Daftar"
             color={colors.white}
             bg="blue"
-            onPress={() => navigation.navigate('MainMenu')}
+            onPress={() => navigation.replace('MainMenu')}
           />
         </Container>
       </Box>
