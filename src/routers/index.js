@@ -26,9 +26,7 @@ const DrawerNavigation = () => {
   return (
     <Drawer.Navigator
       drawerPosition="left"
-      statusBarAnimation="slide"
       minSwipeDistance={10}
-      hideStatusBar
       drawerContent={(props) => <Menu {...props} />}>
       <Drawer.Screen name="Home" component={Main} />
     </Drawer.Navigator>

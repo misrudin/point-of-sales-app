@@ -37,7 +37,7 @@ const LoginPage = ({navigation}) => {
             text="Masuk"
             color={colors.white}
             bg="blue"
-            onPress={() => navigation.navigate('MainMenu')}
+            onPress={() => navigation.replace('MainMenu')}
           />
 
           <Spacer h={10} />
