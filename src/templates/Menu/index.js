@@ -38,7 +38,7 @@ const MenuCustom = ({navigation, progress, ...rest}) => {
           />
           <Divider />
           <StoreProfile
-            name="Shopee"
+            name="Shopie"
             jenis="Butik"
             onPress={() => otw('Toko')}
           />
@@ -57,7 +57,7 @@ const MenuCustom = ({navigation, progress, ...rest}) => {
           <MenuItem
             icon="users"
             text="Data Karyawan"
-            onPress={() => otw('DataKarywan')}
+            onPress={() => otw('DataKaryawan')}
           />
           <MenuItem
             icon="history"

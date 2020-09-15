@@ -49,7 +49,7 @@ const Register = ({navigation}) => {
             text="Daftar"
             color={colors.white}
             bg="blue"
-            onPress={() => navigation.navigate('RegisterStore')}
+            onPress={() => navigation.replace('RegisterStore')}
           />
           <Spacer h={10} />
           <Label
