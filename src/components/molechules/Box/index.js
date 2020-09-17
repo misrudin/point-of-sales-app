@@ -2,19 +2,21 @@ import React from 'react';
 import {StyleSheet, SafeAreaView} from 'react-native';
 import {colors} from '../../../utils';
 
-const BoxcomponentContainer = ({children, center}) => {
+const BoxcomponentContainer = ({children, center, padding = 12}) => {
   return (
-    <SafeAreaView style={styles.container(center)}>{children}</SafeAreaView>
+    <SafeAreaView style={styles.container(center, padding)}>
+      {children}
+    </SafeAreaView>
   );
 };
 
 export default BoxcomponentContainer;
 
 const styles = StyleSheet.create({
-  container: (center) => {
+  container: (center, padding) => {
     return {
       flex: 1,
-      paddingHorizontal: 12,
+      paddingHorizontal: padding,
       backgroundColor: colors.background,
       justifyContent: center ? 'center' : 'flex-start',
       alignItems: center ? 'center' : 'flex-start',

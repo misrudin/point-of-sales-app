@@ -44,7 +44,7 @@ const Profile = ({navigation}) => {
         }}
         bounces={false}>
         <Box>
-          <Spacer h={10000} />
+          <Spacer h={1000} />
         </Box>
       </ScrollView>
     </View>

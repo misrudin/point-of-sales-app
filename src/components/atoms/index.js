@@ -6,5 +6,18 @@ import SocialMedia from './SocialMedia';
 import Divider from './Divider';
 import MenuItem from './MenuItem';
 import About from './About';
+import MainMenuItem from './MainMenuItem';
+import TransactionItems from './TransactionItems';
 
-export {Spacer, Input, Label, Button, SocialMedia, Divider, MenuItem, About};
+export {
+  Spacer,
+  Input,
+  Label,
+  Button,
+  SocialMedia,
+  Divider,
+  MenuItem,
+  About,
+  MainMenuItem,
+  TransactionItems,
+};

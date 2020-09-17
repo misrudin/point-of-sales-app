@@ -1,6 +1,13 @@
 import React from 'react';
 import {StyleSheet, ScrollView, StatusBar, View} from 'react-native';
-import {Box, Label, Row, Spacer} from '../../components';
+import {
+  Box,
+  Label,
+  MainMenu,
+  Row,
+  Spacer,
+  NewTransaction,
+} from '../../components';
 import {Header} from '../../templates';
 import Animated from 'react-native-reanimated';
 import {colors} from '../../utils';
@@ -42,8 +49,13 @@ const MainApp = ({navigation}) => {
           scrollY.setValue(e.nativeEvent.contentOffset.y);
         }}
         bounces={false}>
+        {/* main menu */}
         <Box>
-          <Spacer h={10000} />
+          <MainMenu navigation={navigation} />
+          <Spacer h={20} />
+          <Label text="Transaksi terbaru" />
+          <Spacer h={5} />
+          <NewTransaction />
         </Box>
       </ScrollView>
     </View>

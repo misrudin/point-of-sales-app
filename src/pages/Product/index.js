@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, ScrollView, StatusBar, View} from 'react-native';
+import {StyleSheet, ScrollView, StatusBar, View, Text} from 'react-native';
 import {Box, Spacer} from '../../components';
 import {Header} from '../../templates';
 import Animated from 'react-native-reanimated';
@@ -33,18 +33,37 @@ const Product = ({navigation}) => {
         />
       </Animated.View>
       <ScrollView
-        contentContainerStyle={[
-          styles.scroll,
-          {paddingTop: HEADER_HEIGHT + 10},
-        ]}
+        contentContainerStyle={[styles.scroll, {paddingTop: HEADER_HEIGHT}]}
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={16}
         onScroll={(e) => {
           scrollY.setValue(e.nativeEvent.contentOffset.y);
         }}
         bounces={false}>
-        <Box>
-          <Spacer h={10000} />
+        <Box padding={0}>
+          <View
+            style={{
+              backgroundColor: '#fff',
+              width: '100%',
+              height: 150,
+              paddingHorizontal: 10,
+              paddingVertical: 8,
+              borderBottomColor: '#eee',
+              borderBottomWidth: 1,
+              flexDirection: 'row',
+            }}>
+            <View
+              style={{
+                borderWidth: 1,
+                width: 130,
+                height: '100%',
+              }}></View>
+            <View style={{flex: 1, marginLeft: 5}}>
+              <Text>Sabun Cuci dari india</Text>
+              <Text>Sabun Cuci dari india</Text>
+              <Text>Sabun Cuci dari india</Text>
+            </View>
+          </View>
         </Box>
       </ScrollView>
     </View>
