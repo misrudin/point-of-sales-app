@@ -1,9 +1,10 @@
 import React from 'react';
-import {StyleSheet, ScrollView, StatusBar, View} from 'react-native';
+import {StyleSheet, ScrollView, StatusBar, View, Image} from 'react-native';
 import {Box, Spacer} from '../../components';
 import {Header} from '../../templates';
 import Animated from 'react-native-reanimated';
 import {colors} from '../../utils';
+import {Laptop} from '../../assets';
 
 const HEADER_HEIGHT = 50 + StatusBar.currentHeight;
 const {diffClamp, interpolate} = Animated;
@@ -44,7 +45,7 @@ const Profile = ({navigation}) => {
         }}
         bounces={false}>
         <Box>
-          <Spacer h={1000} />
+          <Image source={Laptop} style={{width: 100, height: 100}} />
         </Box>
       </ScrollView>
     </View>

@@ -6,6 +6,7 @@ import UserProfile from './UserProfile';
 import StoreProfile from './StoreProfile';
 import MainMenu from './MainMenu';
 import NewTransaction from './NewTransaction';
+import ProductItems from './ProductItems';
 
 export {
   Loading,
@@ -16,4 +17,5 @@ export {
   StoreProfile,
   MainMenu,
   NewTransaction,
+  ProductItems,
 };

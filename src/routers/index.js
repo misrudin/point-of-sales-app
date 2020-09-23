@@ -17,6 +17,16 @@ import {
   DataKaryawan,
   LaporanPenjualan,
   Pengaturan,
+  AddProduct,
+  AddKaryawan,
+  EditStore,
+  EditProduct,
+  EditKaryawan,
+  EditProfile,
+  Stok,
+  Print,
+  Scan,
+  Transaction,
 } from '../pages';
 import {Menu} from '../templates';
 import {Animated} from 'react-native';
@@ -124,6 +134,57 @@ const MainStack = () => {
       <Stack.Screen
         name="Pengaturan"
         component={Pengaturan}
+        options={{cardStyleInterpolator: forSlide}}
+      />
+
+      <Stack.Screen
+        name="AddKaryawan"
+        component={AddKaryawan}
+        options={{cardStyleInterpolator: forSlide}}
+      />
+      <Stack.Screen
+        name="AddProduct"
+        component={AddProduct}
+        options={{cardStyleInterpolator: forSlide}}
+      />
+      <Stack.Screen
+        name="EditKaryawan"
+        component={EditKaryawan}
+        options={{cardStyleInterpolator: forSlide}}
+      />
+      <Stack.Screen
+        name="EditProduct"
+        component={EditProduct}
+        options={{cardStyleInterpolator: forSlide}}
+      />
+      <Stack.Screen
+        name="EditProfile"
+        component={EditProfile}
+        options={{cardStyleInterpolator: forSlide}}
+      />
+      <Stack.Screen
+        name="EditStore"
+        component={EditStore}
+        options={{cardStyleInterpolator: forSlide}}
+      />
+      <Stack.Screen
+        name="Print"
+        component={Print}
+        options={{cardStyleInterpolator: forSlide}}
+      />
+      <Stack.Screen
+        name="Scan"
+        component={Scan}
+        options={{cardStyleInterpolator: forSlide}}
+      />
+      <Stack.Screen
+        name="Stock"
+        component={Stok}
+        options={{cardStyleInterpolator: forSlide}}
+      />
+      <Stack.Screen
+        name="Transaction"
+        component={Transaction}
         options={{cardStyleInterpolator: forSlide}}
       />
     </Stack.Navigator>

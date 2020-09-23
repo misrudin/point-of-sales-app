@@ -1,13 +1,17 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View, Image} from 'react-native';
 import {Label} from '..';
+import Ripple from 'react-native-material-ripple';
+import {Laptop} from '../../../assets';
 
-const TransactionItem = ({data}) => {
+const TransactionItem = ({data, onPress}) => {
   return (
-    <View style={styles.viewContainer}>
-      <View style={styles.dots} />
+    <Ripple onPress={onPress && onPress} style={styles.viewContainer}>
+      <View style={styles.dots}>
+        <Image style={styles.image} source={Laptop} resizeMode="cover" />
+      </View>
       <Label text={data.name} />
-    </View>
+    </Ripple>
   );
 };
 
@@ -17,7 +21,6 @@ const styles = StyleSheet.create({
   viewContainer: {
     width: '100%',
     marginBottom: 10,
-    paddingHorizontal: 10,
     borderRadius: 3,
     flexDirection: 'row',
     alignItems: 'center',
@@ -34,12 +37,14 @@ const styles = StyleSheet.create({
     height: 70,
   },
   dots: {
-    backgroundColor: 'red',
-    width: 50,
-    height: 50,
-    borderRadius: 10 / 2,
-    borderWidth: 1,
-    marginRight: 10,
-    borderColor: 'gray',
+    width: 80,
+    height: '100%',
+    borderRadius: 3,
+    overflow: 'hidden',
+    marginRight: 20,
+  },
+  image: {
+    width: '100%',
+    height: '100%',
   },
 });

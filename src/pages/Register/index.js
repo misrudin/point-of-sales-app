@@ -65,21 +65,6 @@ const Register = ({navigation}) => {
             bg="green"
             onPress={() => navigation.goBack()}
           />
-
-          <Spacer h={40} />
-
-          <Label
-            text="Atau Masuk Dengan"
-            color={colors.dark1}
-            center
-            size={14}
-          />
-          <Spacer h={20} />
-          <Row>
-            <SocialMedia icon="google" bg="green" color={colors.white} />
-            <Spacer w={10} />
-            <SocialMedia icon="facebook-f" bg="blue" color={colors.white} />
-          </Row>
         </Container>
       </Box>
     </ScrollView>

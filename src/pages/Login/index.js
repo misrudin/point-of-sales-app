@@ -40,14 +40,14 @@ const LoginPage = ({navigation}) => {
             onPress={() => navigation.replace('MainMenu')}
           />
 
-          <Spacer h={10} />
+          <Spacer h={20} />
           <Label
-            text="Sudah punya akun ?"
+            text="Belum punya akun ?"
             color={colors.dark1}
             center
             size={14}
           />
-          <Spacer h={10} />
+          <Spacer h={20} />
 
           <Button
             text="Daftar"
@@ -56,20 +56,20 @@ const LoginPage = ({navigation}) => {
             onPress={() => navigation.navigate('Register')}
           />
 
-          <Spacer h={40} />
+          {/* <Spacer h={40} />
 
           <Label
             text="Atau Masuk Dengan"
             color={colors.dark1}
             center
             size={14}
-          />
-          <Spacer h={20} />
+          /> */}
+          {/* <Spacer h={20} />
           <Row>
             <SocialMedia icon="google" bg="green" color={colors.white} />
             <Spacer w={10} />
             <SocialMedia icon="facebook-f" bg="blue" color={colors.white} />
-          </Row>
+          </Row> */}
         </Container>
       </Box>
     </ScrollView>
