@@ -5,7 +5,7 @@ const ContainerComponent = ({children, bg, justify = 'center'}) => {
   return <View style={styles.container(bg, justify)}>{children}</View>;
 };
 
-export default ContainerComponent;
+export default React.memo(ContainerComponent);
 
 const styles = StyleSheet.create({
   container: (bg, justify) => {

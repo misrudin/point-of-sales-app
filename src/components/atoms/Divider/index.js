@@ -6,7 +6,7 @@ const DividerComponent = () => {
   return <View style={styles.line} />;
 };
 
-export default DividerComponent;
+export default React.memo(DividerComponent);
 
 const styles = StyleSheet.create({
   line: {

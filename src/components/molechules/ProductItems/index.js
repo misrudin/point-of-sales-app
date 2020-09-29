@@ -11,4 +11,4 @@ const ProductItems = () => {
   );
 };
 
-export default ProductItems;
+export default React.memo(ProductItems);

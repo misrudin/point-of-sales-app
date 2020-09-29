@@ -8,7 +8,7 @@ const Drawer = createDrawerNavigator();
 import {
   Main,
   Login,
-  Splash,
+  SplashScreen,
   Register,
   RegisterStore,
   Profile,
@@ -30,6 +30,7 @@ import {
 } from '../pages';
 import {Menu} from '../templates';
 import {Animated} from 'react-native';
+import {useSelector} from 'react-redux';
 
 // membuat drawer navigation
 const DrawerNavigation = () => {
@@ -84,109 +85,134 @@ const forSlide = ({current, next, inverted, layouts: {screen}}) => {
 
 // stack navigation
 const MainStack = () => {
-  return (
-    <Stack.Navigator initialRouteName="Login" headerMode={false}>
-      <Stack.Screen
-        name="MainMenu"
-        component={DrawerNavigation}
-        options={{cardStyleInterpolator: forSlide}}
-      />
-      <Stack.Screen
-        name="Login"
-        component={Login}
-        options={{cardStyleInterpolator: forSlide}}
-      />
-      <Stack.Screen
-        name="Register"
-        component={Register}
-        options={{cardStyleInterpolator: forSlide}}
-      />
-      <Stack.Screen
-        name="RegisterStore"
-        component={RegisterStore}
-        options={{cardStyleInterpolator: forSlide}}
-      />
-      <Stack.Screen
-        name="Profile"
-        component={Profile}
-        options={{cardStyleInterpolator: forSlide}}
-      />
-      <Stack.Screen
-        name="Toko"
-        component={Toko}
-        options={{cardStyleInterpolator: forSlide}}
-      />
-      <Stack.Screen
-        name="Product"
-        component={Product}
-        options={{cardStyleInterpolator: forSlide}}
-      />
-      <Stack.Screen
-        name="DataKaryawan"
-        component={DataKaryawan}
-        options={{cardStyleInterpolator: forSlide}}
-      />
-      <Stack.Screen
-        name="LaporanPenjualan"
-        component={LaporanPenjualan}
-        options={{cardStyleInterpolator: forSlide}}
-      />
-      <Stack.Screen
-        name="Pengaturan"
-        component={Pengaturan}
-        options={{cardStyleInterpolator: forSlide}}
-      />
+  const state = useSelector((value) => value.appState);
+  const authstate = useSelector((value) => value.authState);
 
-      <Stack.Screen
-        name="AddKaryawan"
-        component={AddKaryawan}
-        options={{cardStyleInterpolator: forSlide}}
-      />
-      <Stack.Screen
-        name="AddProduct"
-        component={AddProduct}
-        options={{cardStyleInterpolator: forSlide}}
-      />
-      <Stack.Screen
-        name="EditKaryawan"
-        component={EditKaryawan}
-        options={{cardStyleInterpolator: forSlide}}
-      />
-      <Stack.Screen
-        name="EditProduct"
-        component={EditProduct}
-        options={{cardStyleInterpolator: forSlide}}
-      />
-      <Stack.Screen
-        name="EditProfile"
-        component={EditProfile}
-        options={{cardStyleInterpolator: forSlide}}
-      />
-      <Stack.Screen
-        name="EditStore"
-        component={EditStore}
-        options={{cardStyleInterpolator: forSlide}}
-      />
-      <Stack.Screen
-        name="Print"
-        component={Print}
-        options={{cardStyleInterpolator: forSlide}}
-      />
-      <Stack.Screen
-        name="Scan"
-        component={Scan}
-        options={{cardStyleInterpolator: forSlide}}
-      />
-      <Stack.Screen
-        name="Stock"
-        component={Stok}
-        options={{cardStyleInterpolator: forSlide}}
-      />
-      <Stack.Screen
-        name="Transaction"
-        component={Transaction}
-        options={{cardStyleInterpolator: forSlide}}
-      />
+  console.log(authstate);
+
+  if (state.splash) {
+    return <SplashScreen />;
+  }
+
+  return (
+    <Stack.Navigator
+      initialRouteName={
+        authstate.isLoggedIn
+          ? authstate.userHaveStore
+            ? 'MainMenu'
+            : 'RegisterStore'
+          : 'Login'
+      }
+      headerMode={false}>
+      {!authstate.isLoggedIn ? (
+        <>
+          <Stack.Screen
+            name="Login"
+            component={Login}
+            options={{cardStyleInterpolator: forSlide}}
+          />
+          <Stack.Screen
+            name="Register"
+            component={Register}
+            options={{cardStyleInterpolator: forSlide}}
+          />
+        </>
+      ) : !authstate.userHaveStore ? (
+        <Stack.Screen
+          name="RegisterStore"
+          component={RegisterStore}
+          options={{cardStyleInterpolator: forSlide}}
+        />
+      ) : (
+        <>
+          <Stack.Screen
+            name="MainMenu"
+            component={DrawerNavigation}
+            options={{cardStyleInterpolator: forSlide}}
+          />
+          <Stack.Screen
+            name="Profile"
+            component={Profile}
+            options={{cardStyleInterpolator: forSlide}}
+          />
+          <Stack.Screen
+            name="Toko"
+            component={Toko}
+            options={{cardStyleInterpolator: forSlide}}
+          />
+          <Stack.Screen
+            name="Product"
+            component={Product}
+            options={{cardStyleInterpolator: forSlide}}
+          />
+          <Stack.Screen
+            name="DataKaryawan"
+            component={DataKaryawan}
+            options={{cardStyleInterpolator: forSlide}}
+          />
+          <Stack.Screen
+            name="LaporanPenjualan"
+            component={LaporanPenjualan}
+            options={{cardStyleInterpolator: forSlide}}
+          />
+          <Stack.Screen
+            name="Pengaturan"
+            component={Pengaturan}
+            options={{cardStyleInterpolator: forSlide}}
+          />
+
+          <Stack.Screen
+            name="AddKaryawan"
+            component={AddKaryawan}
+            options={{cardStyleInterpolator: forSlide}}
+          />
+          <Stack.Screen
+            name="AddProduct"
+            component={AddProduct}
+            options={{cardStyleInterpolator: forSlide}}
+          />
+          <Stack.Screen
+            name="EditKaryawan"
+            component={EditKaryawan}
+            options={{cardStyleInterpolator: forSlide}}
+          />
+          <Stack.Screen
+            name="EditProduct"
+            component={EditProduct}
+            options={{cardStyleInterpolator: forSlide}}
+          />
+          <Stack.Screen
+            name="EditProfile"
+            component={EditProfile}
+            options={{cardStyleInterpolator: forSlide}}
+          />
+          <Stack.Screen
+            name="EditStore"
+            component={EditStore}
+            options={{cardStyleInterpolator: forSlide}}
+          />
+          <Stack.Screen
+            name="Print"
+            component={Print}
+            options={{cardStyleInterpolator: forSlide}}
+          />
+          <Stack.Screen
+            name="Scan"
+            component={Scan}
+            options={{cardStyleInterpolator: forSlide}}
+          />
+          <Stack.Screen
+            name="Stock"
+            component={Stok}
+            options={{cardStyleInterpolator: forSlide}}
+          />
+          <Stack.Screen
+            name="Transaction"
+            component={Transaction}
+            options={{cardStyleInterpolator: forSlide}}
+          />
+        </>
+      )}
     </Stack.Navigator>
   );
 };

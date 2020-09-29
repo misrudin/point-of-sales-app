@@ -16,7 +16,7 @@ const MenuItem = ({icon = 'home', text = 'Home', onPress}) => {
   );
 };
 
-export default MenuItem;
+export default React.memo(MenuItem);
 
 const styles = StyleSheet.create({
   menuItem: {

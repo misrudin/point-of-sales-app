@@ -18,7 +18,7 @@ const MainMenu = ({navigation}) => {
   );
 };
 
-export default MainMenu;
+export default React.memo(MainMenu);
 
 const styles = StyleSheet.create({
   containerMenu: {

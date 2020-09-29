@@ -15,7 +15,7 @@ const ButtonComponent = ({text, color, bg, onPress}) => {
   );
 };
 
-export default ButtonComponent;
+export default React.memo(ButtonComponent);
 
 const styles = StyleSheet.create({
   button: (bg) => {

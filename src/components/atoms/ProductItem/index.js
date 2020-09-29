@@ -28,7 +28,7 @@ const ProductItem = () => {
   );
 };
 
-export default ProductItem;
+export default React.memo(ProductItem);
 
 const styles = StyleSheet.create({
   container: {

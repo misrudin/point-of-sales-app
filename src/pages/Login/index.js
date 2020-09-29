@@ -1,18 +1,45 @@
 import React from 'react';
 import {StyleSheet, ScrollView} from 'react-native';
-import {
-  Box,
-  Input,
-  Label,
-  Spacer,
-  Container,
-  Button,
-  Row,
-  SocialMedia,
-} from '../../components';
-import {colors} from '../../utils';
+import {Box, Input, Label, Spacer, Container, Button} from '../../components';
+import {colors, storeData, useForm, userHaveStore} from '../../utils';
+import app from '../../configs';
+import {useDispatch} from 'react-redux';
 
 const LoginPage = ({navigation}) => {
+  const [form, setForm] = useForm({
+    email: '',
+    password: '',
+  });
+
+  const dispatch = useDispatch();
+
+  const _login = async () => {
+    const {email, password} = form;
+    dispatch({type: 'LOADING'});
+    await app
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((res) => {
+        const uid = res.user.uid;
+        const userData = {
+          uid,
+          email: email,
+        };
+        userHaveStore(uid).then((store) => {
+          if (store) {
+            dispatch({type: 'STORE', store});
+          }
+          dispatch({type: 'LOGIN', userData: userData, uid: uid});
+          dispatch({type: 'LOADING'});
+          setForm('reset');
+        });
+      })
+      .catch((e) => {
+        dispatch({type: 'LOADING'});
+        setForm('password', '');
+      });
+  };
+
   return (
     <ScrollView
       contentContainerStyle={styles.scroll}
@@ -24,20 +51,32 @@ const LoginPage = ({navigation}) => {
 
           <Label text="Email / Phone" size={14} />
           <Spacer h={5} />
-          <Input placeholder="Email / Phone" email icon="envelope-square" />
+          <Input
+            placeholder="Email / Phone"
+            value={form.email}
+            onChange={(e) => setForm('email', e)}
+            email
+            icon="envelope-square"
+          />
 
           <Spacer h={15} />
 
           <Label text="Password" size={14} />
           <Spacer h={5} />
-          <Input placeholder="Password" password icon="lock" />
+          <Input
+            placeholder="Password"
+            value={form.password}
+            onChange={(e) => setForm('password', e)}
+            password
+            icon="lock"
+          />
 
           <Spacer h={40} />
           <Button
             text="Masuk"
             color={colors.white}
             bg="blue"
-            onPress={() => navigation.replace('MainMenu')}
+            onPress={_login}
           />
 
           <Spacer h={20} />
@@ -55,21 +94,6 @@ const LoginPage = ({navigation}) => {
             bg="green"
             onPress={() => navigation.navigate('Register')}
           />
-
-          {/* <Spacer h={40} />
-
-          <Label
-            text="Atau Masuk Dengan"
-            color={colors.dark1}
-            center
-            size={14}
-          /> */}
-          {/* <Spacer h={20} />
-          <Row>
-            <SocialMedia icon="google" bg="green" color={colors.white} />
-            <Spacer w={10} />
-            <SocialMedia icon="facebook-f" bg="blue" color={colors.white} />
-          </Row> */}
         </Container>
       </Box>
     </ScrollView>

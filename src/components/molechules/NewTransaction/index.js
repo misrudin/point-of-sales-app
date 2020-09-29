@@ -18,7 +18,7 @@ const NewTransaction = () => {
   );
 };
 
-export default NewTransaction;
+export default React.memo(NewTransaction);
 
 const styles = StyleSheet.create({
   containerView: {

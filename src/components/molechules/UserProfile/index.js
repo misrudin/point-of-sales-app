@@ -22,7 +22,7 @@ const UserProfile = ({foto, name, jabatan, onPress}) => {
   );
 };
 
-export default UserProfile;
+export default React.memo(UserProfile);
 
 const styles = StyleSheet.create({
   photoProfile: {

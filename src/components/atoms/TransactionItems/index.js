@@ -15,7 +15,7 @@ const TransactionItem = ({data, onPress}) => {
   );
 };
 
-export default TransactionItem;
+export default React.memo(TransactionItem);
 
 const styles = StyleSheet.create({
   viewContainer: {

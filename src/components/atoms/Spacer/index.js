@@ -5,7 +5,7 @@ const SpacerComponent = ({h, w}) => {
   return <View style={styles.space(h, w)} />;
 };
 
-export default SpacerComponent;
+export default React.memo(SpacerComponent);
 
 const styles = StyleSheet.create({
   space: (h, w) => {

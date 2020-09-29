@@ -15,7 +15,7 @@ const SocialMediaButotn = ({icon = 'google', bg, color, onPress}) => {
   );
 };
 
-export default SocialMediaButotn;
+export default React.memo(SocialMediaButotn);
 
 const styles = StyleSheet.create({
   button: (bg) => {

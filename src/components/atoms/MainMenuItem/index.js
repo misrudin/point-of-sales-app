@@ -15,7 +15,7 @@ const MainMenuItem = ({data, navigation, index}) => {
   );
 };
 
-export default MainMenuItem;
+export default React.memo(MainMenuItem);
 
 const styles = StyleSheet.create({
   constinerItemMenu: {

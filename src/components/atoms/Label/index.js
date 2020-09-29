@@ -6,7 +6,7 @@ const LabelComponent = ({text, color = colors.dark1, size, center}) => {
   return <Text style={styles.text(size, color, center)}>{text}</Text>;
 };
 
-export default LabelComponent;
+export default React.memo(LabelComponent);
 
 const styles = StyleSheet.create({
   text: (size, color, center) => {

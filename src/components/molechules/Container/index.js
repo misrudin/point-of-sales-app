@@ -5,7 +5,7 @@ const ContainerComponent = ({children, bg}) => {
   return <View style={styles.container(bg)}>{children}</View>;
 };
 
-export default ContainerComponent;
+export default React.memo(ContainerComponent);
 
 const styles = StyleSheet.create({
   container: (bg) => {

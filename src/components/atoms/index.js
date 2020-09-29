@@ -9,6 +9,7 @@ import About from './About';
 import MainMenuItem from './MainMenuItem';
 import TransactionItems from './TransactionItems';
 import ProductItem from './ProductItem';
+import Picker from './Picker';
 
 export {
   Spacer,
@@ -22,4 +23,5 @@ export {
   MainMenuItem,
   TransactionItems,
   ProductItem,
+  Picker,
 };

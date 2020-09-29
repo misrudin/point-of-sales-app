@@ -15,7 +15,7 @@ const AboutApp = () => {
   );
 };
 
-export default AboutApp;
+export default React.memo(AboutApp);
 
 const styles = StyleSheet.create({
   containerProfile: {

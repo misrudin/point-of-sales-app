@@ -10,7 +10,7 @@ const BoxcomponentContainer = ({children, center, padding = 12}) => {
   );
 };
 
-export default BoxcomponentContainer;
+export default React.memo(BoxcomponentContainer);
 
 const styles = StyleSheet.create({
   container: (center, padding) => {

@@ -1,3 +1,4 @@
+import react from 'react';
 import React from 'react';
 import {StyleSheet, TextInput, View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -38,7 +39,7 @@ const InputComponent = ({
   );
 };
 
-export default InputComponent;
+export default React.memo(InputComponent);
 
 const styles = StyleSheet.create({
   icon: {

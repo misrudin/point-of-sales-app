@@ -18,7 +18,7 @@ const StoreProfile = ({name, jenis, onPress}) => {
   );
 };
 
-export default StoreProfile;
+export default React.memo(StoreProfile);
 
 const styles = StyleSheet.create({
   containerProfile: {

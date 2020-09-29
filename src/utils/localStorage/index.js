@@ -18,3 +18,7 @@ export const getData = async (key) => {
     // error reading value
   }
 };
+
+export const removeData = (key) => {
+  return AsyncStorage.removeItem(key);
+};

@@ -9,21 +9,34 @@ import React from 'react';
 import {colors} from './src/utils';
 import {NavigationContainer} from '@react-navigation/native';
 import Router from './src/routers';
+import {Loading} from './src/components';
+
+import {Provider, useSelector} from 'react-redux';
+import store from './src/redux';
 
 const MainApp = () => {
+  const state = useSelector((value) => value.appState);
+  console.log(state);
   return (
-    <>
-      <NavigationContainer>
-        <StatusBar
-          animated
-          backgroundColor={colors.background}
-          barStyle="dark-content"
-          translucent={true}
-        />
-        <Router />
-      </NavigationContainer>
-    </>
+    <NavigationContainer>
+      <Router />
+      {state.loading && <Loading />}
+    </NavigationContainer>
   );
 };
 
-AppRegistry.registerComponent(appName, () => MainApp);
+const WrapperApp = () => {
+  return (
+    <Provider store={store}>
+      <StatusBar
+        animated
+        backgroundColor={colors.background}
+        barStyle="dark-content"
+        translucent={true}
+      />
+      <MainApp />
+    </Provider>
+  );
+};
+
+AppRegistry.registerComponent(appName, () => WrapperApp);
