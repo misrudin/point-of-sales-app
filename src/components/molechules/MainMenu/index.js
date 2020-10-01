@@ -9,7 +9,12 @@ const MainMenu = ({navigation}) => {
       <FlatList
         data={dataMenuHome}
         renderItem={({item, index}) => (
-          <MainMenuItem data={item} navigation={navigation} index={index} />
+          <MainMenuItem
+            data={item}
+            key={index}
+            navigation={navigation}
+            index={index}
+          />
         )}
         numColumns={2}
         keyExtractor={(item) => item.id.toString()}

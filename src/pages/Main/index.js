@@ -36,6 +36,8 @@ const MainApp = ({navigation}) => {
           navigation={navigation}
           text="Dashboard"
           header={HEADER_HEIGHT}
+          noshadow
+          bg={colors.white}
         />
       </Animated.View>
       <ScrollView
@@ -50,7 +52,7 @@ const MainApp = ({navigation}) => {
         }}
         bounces={false}>
         {/* main menu */}
-        <Box>
+        <Box bg={colors.white}>
           <MainMenu navigation={navigation} />
           <Spacer h={20} />
           <Label text="Transaksi terbaru" />
@@ -69,5 +71,5 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   header: {elevation: 2, zIndex: 2000},
-  container: {backgroundColor: colors.background, flex: 1},
+  container: {backgroundColor: colors.white, flex: 1},
 });

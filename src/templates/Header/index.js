@@ -5,13 +5,21 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import {Label} from '../../components';
 import {colors} from '../../utils';
 
-const Header = ({navigation, text, header, back}) => {
+const Header = ({
+  navigation,
+  text,
+  header,
+  back,
+  noshadow = false,
+  bg = '#fff',
+  edit,
+}) => {
   return (
-    <View style={[styles.container, {height: header}]}>
+    <View style={[styles.container(noshadow, bg), {height: header}]}>
       <StatusBar
         barStyle="dark-content"
         hidden={false}
-        backgroundColor="#fff"
+        backgroundColor={bg}
         translucent={true}
         networkActivityIndicatorVisible={true}
       />
@@ -19,20 +27,23 @@ const Header = ({navigation, text, header, back}) => {
         <TouchableOpacity
           style={styles.button}
           activeOpacity={0.3}
-          onPress={() =>
-            back ? navigation.goBack() : navigation.openDrawer()
-          }>
-          <Icon
-            name={back ? 'arrow-left' : 'bars'}
-            color={colors.dark1}
-            size={18}
-          />
+          onPress={() => back && navigation.goBack()}>
+          <Icon name={back && 'arrow-left'} color={colors.dark1} size={18} />
         </TouchableOpacity>
       </View>
       <View style={styles.title}>
-        <Label text={text} size={18} />
+        <Label text={text} size={18} weight="bold" color="#000" />
       </View>
-      <View style={styles.right} />
+      <View style={styles.right}>
+        {edit && (
+          <TouchableOpacity
+            style={styles.button}
+            activeOpacity={0.3}
+            onPress={edit}>
+            <Icon name={'pen'} color={colors.dark1} size={18} />
+          </TouchableOpacity>
+        )}
+      </View>
     </View>
   );
 };
@@ -40,23 +51,25 @@ const Header = ({navigation, text, header, back}) => {
 export default Header;
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    height: 50 + StatusBar.currentHeight,
-    backgroundColor: '#FFFFFF',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingTop: StatusBar.currentHeight,
-    shadowColor: '#000',
-    shadowOffset: {width: 2, height: 2},
-    shadowOpacity: 1,
-    shadowRadius: 1,
-    elevation: 2,
-    zIndex: 1000,
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
+  container: (noshadow, bg) => {
+    return {
+      flexDirection: 'row',
+      height: 50 + StatusBar.currentHeight,
+      backgroundColor: bg,
+      justifyContent: 'center',
+      alignItems: 'center',
+      paddingTop: StatusBar.currentHeight,
+      shadowColor: '#000',
+      shadowOffset: {width: 2, height: 2},
+      shadowOpacity: noshadow ? 0 : 1,
+      shadowRadius: noshadow ? 0 : 1,
+      elevation: noshadow ? 0 : 2,
+      zIndex: 1000,
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+    };
   },
   Icon: {
     width: 25,
@@ -74,5 +87,5 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   left: {flex: 1, justifyContent: 'center', alignItems: 'center'},
-  right: {flex: 1},
+  right: {flex: 1, justifyContent: 'center', alignItems: 'center'},
 });

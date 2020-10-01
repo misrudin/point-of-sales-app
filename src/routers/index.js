@@ -1,6 +1,9 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
+const Tab = createBottomTabNavigator();
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -28,19 +31,32 @@ import {
   Scan,
   Transaction,
 } from '../pages';
-import {Menu} from '../templates';
-import {Animated} from 'react-native';
+import {TabBar} from '../templates';
+import {Animated, Settings} from 'react-native';
 import {useSelector} from 'react-redux';
 
 // membuat drawer navigation
-const DrawerNavigation = () => {
+// const DrawerNavigation = () => {
+//   return (
+//     <Drawer.Navigator
+//       drawerPosition="left"
+//       minSwipeDistance={10}
+//       drawerContent={(props) => <Menu {...props} />}>
+//       <Drawer.Screen name="Home" component={Main} />
+//     </Drawer.Navigator>
+//   );
+// };
+
+// tab navigator
+const TabNavigator = () => {
   return (
-    <Drawer.Navigator
-      drawerPosition="left"
-      minSwipeDistance={10}
-      drawerContent={(props) => <Menu {...props} />}>
-      <Drawer.Screen name="Home" component={Main} />
-    </Drawer.Navigator>
+    <Tab.Navigator
+      initialRouteName="Home"
+      tabBar={(props) => <TabBar {...props} />}>
+      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen name="Home" component={Main} />
+      <Tab.Screen name="Setting" component={Pengaturan} />
+    </Tab.Navigator>
   );
 };
 
@@ -127,7 +143,7 @@ const MainStack = () => {
         <>
           <Stack.Screen
             name="MainMenu"
-            component={DrawerNavigation}
+            component={TabNavigator}
             options={{cardStyleInterpolator: forSlide}}
           />
           <Stack.Screen

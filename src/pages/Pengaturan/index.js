@@ -29,7 +29,8 @@ const Pengaturan = ({navigation}) => {
           navigation={navigation}
           text="Pengaturan"
           header={HEADER_HEIGHT}
-          back
+          noshadow
+          bg={colors.white}
         />
       </Animated.View>
       <ScrollView
@@ -43,7 +44,7 @@ const Pengaturan = ({navigation}) => {
           scrollY.setValue(e.nativeEvent.contentOffset.y);
         }}
         bounces={false}>
-        <Box>
+        <Box bg={colors.white}>
           <Spacer h={10000} />
         </Box>
       </ScrollView>
@@ -58,5 +59,5 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   header: {elevation: 2, zIndex: 2000},
-  container: {backgroundColor: colors.background, flex: 1},
+  container: {backgroundColor: colors.white, flex: 1},
 });
