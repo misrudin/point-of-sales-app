@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     color: colors.dark1,
   },
   inputGrup: {
-    backgroundColor: colors.white,
+    backgroundColor: '#fff',
     flexDirection: 'row',
     alignItems: 'center',
     borderRadius: 4,

@@ -1,16 +1,17 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {colors, fonts, getData, userHaveStore} from '../../utils';
+import {StyleSheet} from 'react-native';
+import {fonts, getData, userHaveStore} from '../../utils';
 import {Box} from '../../components';
-import {Loading} from '../../components';
 import {useDispatch} from 'react-redux';
+
+import {UpdateAnimate} from '../../assets';
+import LottieView from 'lottie-react-native';
 
 const SplashScreen = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     getData('uid').then((res) => {
-      console.log(res);
-      if (res.uid) {
+      if (res) {
         getData('userData').then((user) => {
           if (user) {
             getData('userHaveStore').then((storeFromLocal) => {
@@ -39,11 +40,8 @@ const SplashScreen = () => {
   }, [dispatch]);
 
   return (
-    <Box style={styles.container}>
-      <View>
-        <Text style={styles.text}>Heloo App</Text>
-      </View>
-      <Loading />
+    <Box bg={'rgb(18,134,255)'} style={styles.container}>
+      <LottieView source={UpdateAnimate} autoPlay loop />
     </Box>
   );
 };
@@ -52,7 +50,7 @@ export default SplashScreen;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.background,
+    backgroundColor: 'rgb(18,134,255)',
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

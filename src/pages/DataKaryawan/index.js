@@ -1,37 +1,55 @@
-import React from 'react';
+import React, {useCallback, useState, useEffect} from 'react';
 import {StyleSheet, ScrollView, StatusBar, View} from 'react-native';
-import {Box, Spacer} from '../../components';
+import {Box, Employees} from '../../components';
 import {Header} from '../../templates';
-import Animated from 'react-native-reanimated';
 import {colors} from '../../utils';
+import app from '../../configs/index';
+import {useSelector} from 'react-redux';
 
 const HEADER_HEIGHT = 50 + StatusBar.currentHeight;
-const {diffClamp, interpolate} = Animated;
 
 const DataKaryawan = ({navigation}) => {
-  const scrollY = new Animated.Value(0);
-  const diffClampY = diffClamp(scrollY, 0, HEADER_HEIGHT);
-  const translateY = interpolate(diffClampY, {
-    inputRange: [0, HEADER_HEIGHT],
-    outputRange: [0, -HEADER_HEIGHT],
-  });
+  const userState = useSelector((state) => state.authState);
+  const [employees, setEmployees] = useState(null);
+
+  //get data product form database
+  const getData = useCallback(() => {
+    const urlFirebase = `employees/${userState.uid}`;
+
+    app
+      .database()
+      .ref(urlFirebase)
+      .on('value', (snap) => {
+        if (snap) {
+          const data = snap.val();
+          if (data) {
+            let temp = [];
+            Object.keys(data).map((key) => {
+              return temp.push(data[key]);
+            });
+            setEmployees(temp);
+          } else {
+            setEmployees(null);
+          }
+        }
+      });
+  }, [userState]);
+
+  useEffect(() => {
+    // const getDAta
+    getData();
+  }, [getData]);
 
   return (
     <View style={styles.container}>
-      <Animated.View
-        style={[
-          {
-            transform: [{translateY: translateY}],
-          },
-          styles.header,
-        ]}>
-        <Header
-          navigation={navigation}
-          text="Data Karyawan"
-          header={HEADER_HEIGHT}
-          back
-        />
-      </Animated.View>
+      <Header
+        navigation={navigation}
+        text="Data Karyawan"
+        header={HEADER_HEIGHT}
+        back
+        add={() => navigation.navigate('AddKaryawan')}
+      />
+
       <ScrollView
         contentContainerStyle={[
           styles.scroll,
@@ -39,12 +57,9 @@ const DataKaryawan = ({navigation}) => {
         ]}
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={16}
-        onScroll={(e) => {
-          scrollY.setValue(e.nativeEvent.contentOffset.y);
-        }}
         bounces={false}>
-        <Box>
-          <Spacer h={10000} />
+        <Box bg={colors.white}>
+          <Employees data={employees} />
         </Box>
       </ScrollView>
     </View>
@@ -58,5 +73,5 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   header: {elevation: 2, zIndex: 2000},
-  container: {backgroundColor: colors.background, flex: 1},
+  container: {backgroundColor: colors.white, flex: 1},
 });

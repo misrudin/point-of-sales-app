@@ -16,7 +16,7 @@ const MainMenu = ({navigation}) => {
             index={index}
           />
         )}
-        numColumns={2}
+        numColumns={4}
         keyExtractor={(item) => item.id.toString()}
       />
     </View>

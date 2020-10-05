@@ -10,7 +10,7 @@ target 'posapp' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
-  pod 'RNDotEnv', :path => '../node_modules/react-native-dot-env'
+  #pod 'RNDotEnv', :path => '../node_modules/react-native-dot-env'
 
   target 'posappTests' do
     inherit! :complete

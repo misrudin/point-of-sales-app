@@ -14,6 +14,20 @@ export const getDetailUser = async (uid) => {
   return user;
 };
 
+// get detail Store
+export const getDetailStore = async (uid) => {
+  const urlStore = `stores/${uid}`;
+  let store = null;
+  await app
+    .database()
+    .ref(urlStore)
+    .once('value')
+    .then((snapshot) => {
+      store = snapshot.val();
+    });
+  return store;
+};
+
 // get user yang sedang login
 export const getUser = async () => {
   app.auth().onAuthStateChanged((user) => {

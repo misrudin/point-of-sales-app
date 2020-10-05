@@ -13,10 +13,12 @@ const Header = ({
   noshadow = false,
   bg = '#fff',
   edit,
+  add,
 }) => {
   return (
     <View style={[styles.container(noshadow, bg), {height: header}]}>
       <StatusBar
+        animated
         barStyle="dark-content"
         hidden={false}
         backgroundColor={bg}
@@ -41,6 +43,14 @@ const Header = ({
             activeOpacity={0.3}
             onPress={edit}>
             <Icon name={'pen'} color={colors.dark1} size={18} />
+          </TouchableOpacity>
+        )}
+        {add && (
+          <TouchableOpacity
+            style={styles.button}
+            activeOpacity={0.3}
+            onPress={add}>
+            <Icon name="plus" color={colors.dark1} size={18} />
           </TouchableOpacity>
         )}
       </View>

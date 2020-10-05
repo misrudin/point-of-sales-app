@@ -1,42 +1,40 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, ScrollView, StatusBar, View, Image} from 'react-native';
 import {Box, Label, Spacer} from '../../components';
 import {Header} from '../../templates';
-import Animated from 'react-native-reanimated';
-import {colors} from '../../utils';
+import {colors, getDetailStore, getDetailUser} from '../../utils';
 import {Laptop} from '../../assets';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import LinearGradient from 'react-native-linear-gradient';
+import {useSelector} from 'react-redux';
 
 const HEADER_HEIGHT = 50 + StatusBar.currentHeight;
-const {diffClamp, interpolate} = Animated;
 
 const Profile = ({navigation}) => {
-  const scrollY = new Animated.Value(0);
-  const diffClampY = diffClamp(scrollY, 0, HEADER_HEIGHT);
-  const translateY = interpolate(diffClampY, {
-    inputRange: [0, HEADER_HEIGHT],
-    outputRange: [0, -HEADER_HEIGHT],
-  });
+  const authState = useSelector((state) => state.authState);
+
+  const [user, setUser] = useState(null);
+  const [store, setStore] = useState(null);
+
+  useEffect(() => {
+    getDetailUser(authState.uid).then((res) => {
+      setUser(res);
+    });
+    getDetailStore(authState.uid).then((dataStore) => {
+      setStore(dataStore);
+      console.log(dataStore);
+    });
+  }, [authState.uid]);
 
   return (
     <View style={styles.container}>
-      <Animated.View
-        style={[
-          {
-            transform: [{translateY: translateY}],
-          },
-          styles.header,
-        ]}>
-        <Header
-          navigation={navigation}
-          text="My Profile"
-          header={HEADER_HEIGHT}
-          noshadow
-          bg={colors.white}
-          edit={() => null}
-        />
-      </Animated.View>
+      <Header
+        navigation={navigation}
+        text="My Profile"
+        header={HEADER_HEIGHT}
+        bg={'#fff'}
+        edit={() => null}
+      />
       <ScrollView
         contentContainerStyle={[
           styles.scroll,
@@ -44,9 +42,6 @@ const Profile = ({navigation}) => {
         ]}
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={16}
-        onScroll={(e) => {
-          scrollY.setValue(e.nativeEvent.contentOffset.y);
-        }}
         bounces={false}>
         <Box padding={20} bg={colors.white}>
           {/* user profile */}
@@ -56,13 +51,26 @@ const Profile = ({navigation}) => {
               <View style={styles.status} />
             </View>
             <View style={styles.userDetail}>
-              <Label text="David Luis" color="#000" size={22} weight="bold" />
-              <Label text="Pemilik Toko" color="#777" size={16} />
+              <Label text={user?.name} color="#000" size={22} weight="bold" />
+              <Label
+                text={
+                  user?.store === true
+                    ? 'Pemilik Toko ' + store?.nama_toko
+                    : 'Karyawan di ' + store?.nama_toko
+                }
+                color="#777"
+                size={14}
+              />
               <Spacer f={1} />
               <View style={styles.locationUser}>
                 <Icon name="map-marker-alt" size={14} color="salmon" />
                 <Spacer h={5} w={5} />
-                <Label text="Majenang" color="#000" size={12} weight="bold" />
+                <Label
+                  text={store?.alamat}
+                  color="#000"
+                  size={12}
+                  weight="bold"
+                />
               </View>
             </View>
           </View>
@@ -179,6 +187,7 @@ const styles = StyleSheet.create({
   userDetail: {
     marginLeft: 15,
     paddingVertical: 10,
+    flex: 1,
   },
 
   locationUser: {

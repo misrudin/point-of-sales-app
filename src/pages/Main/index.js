@@ -1,57 +1,44 @@
 import React from 'react';
-import {StyleSheet, ScrollView, StatusBar, View} from 'react-native';
 import {
-  Box,
-  Label,
-  MainMenu,
-  Row,
-  Spacer,
-  NewTransaction,
-} from '../../components';
-import {Header} from '../../templates';
-import Animated from 'react-native-reanimated';
+  StyleSheet,
+  ScrollView,
+  StatusBar,
+  View,
+  Dimensions,
+} from 'react-native';
+import {Box, Label, MainMenu, Spacer, NewTransaction} from '../../components';
 import {colors} from '../../utils';
+import {HomeAnimate} from '../../assets';
+import LinearGradient from 'react-native-linear-gradient';
+import {Header} from '../../templates';
+import LottieView from 'lottie-react-native';
 
+const {height} = Dimensions.get('window');
 const HEADER_HEIGHT = 50 + StatusBar.currentHeight;
-const {diffClamp, interpolate} = Animated;
 
 const MainApp = ({navigation}) => {
-  const scrollY = new Animated.Value(0);
-  const diffClampY = diffClamp(scrollY, 0, HEADER_HEIGHT);
-  const translateY = interpolate(diffClampY, {
-    inputRange: [0, HEADER_HEIGHT],
-    outputRange: [0, -HEADER_HEIGHT],
-  });
-
   return (
     <View style={styles.container}>
-      <Animated.View
-        style={[
-          {
-            transform: [{translateY: translateY}],
-          },
-          styles.header,
-        ]}>
-        <Header
-          navigation={navigation}
-          text="Dashboard"
-          header={HEADER_HEIGHT}
-          noshadow
-          bg={colors.white}
-        />
-      </Animated.View>
+      <Header
+        navigation={navigation}
+        text="Dashboard"
+        header={HEADER_HEIGHT}
+        bg={'#fff'}
+      />
       <ScrollView
-        contentContainerStyle={[
-          styles.scroll,
-          {paddingTop: HEADER_HEIGHT + 10},
-        ]}
+        contentContainerStyle={[styles.scroll, {paddingTop: HEADER_HEIGHT}]}
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={16}
-        onScroll={(e) => {
-          scrollY.setValue(e.nativeEvent.contentOffset.y);
-        }}
         bounces={false}>
         {/* main menu */}
+        <LinearGradient
+          colors={['#1ED1FF', 'rgb(18,134,255)']}
+          style={styles.header}
+          start={{x: 1, y: 1}}
+          end={{x: 1, y: 1}}>
+          <LottieView style={styles.lotie} source={HomeAnimate} autoPlay loop />
+        </LinearGradient>
+        <Spacer h={20} />
         <Box bg={colors.white}>
           <MainMenu navigation={navigation} />
           <Spacer h={20} />
@@ -70,6 +57,15 @@ const styles = StyleSheet.create({
   scroll: {
     paddingBottom: 20,
   },
-  header: {elevation: 2, zIndex: 2000},
+  header: {
+    height: height / 3,
+    width: '100%',
+    // backgroundColor: '#0278ae',
+    // borderBottomLeftRadius: 10,
+    // borderBottomRightRadius: 10,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
   container: {backgroundColor: colors.white, flex: 1},
+  lotie: {width: '100%', height: '100%'},
 });

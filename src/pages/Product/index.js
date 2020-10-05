@@ -1,37 +1,61 @@
-import React from 'react';
+import React, {useEffect, useCallback, useState} from 'react';
 import {StyleSheet, ScrollView, StatusBar, View} from 'react-native';
 import {Box, ProductItems} from '../../components';
 import {Header} from '../../templates';
-import Animated from 'react-native-reanimated';
 import {colors} from '../../utils';
+import {useSelector, useDispatch} from 'react-redux';
+import app from '../../configs';
 
 const HEADER_HEIGHT = 50 + StatusBar.currentHeight;
-const {diffClamp, interpolate} = Animated;
 
 const Product = ({navigation}) => {
-  const scrollY = new Animated.Value(0);
-  const diffClampY = diffClamp(scrollY, 0, HEADER_HEIGHT);
-  const translateY = interpolate(diffClampY, {
-    inputRange: [0, HEADER_HEIGHT],
-    outputRange: [0, -HEADER_HEIGHT],
-  });
+  const userState = useSelector((state) => state.authState);
+  const [product, setProduct] = useState(null);
+  const dispatch = useDispatch();
+
+  //get data product form database
+  const getData = useCallback(() => {
+    const urlFirebase = `products/${userState.uid}`;
+    dispatch({type: 'LOADING'});
+    app
+      .database()
+      .ref(urlFirebase)
+      .on('value', (snap) => {
+        if (snap) {
+          const data = snap.val();
+          if (data) {
+            let temp = [];
+            Object.keys(data).map((key) => {
+              return temp.push(data[key]);
+            });
+            setProduct(temp);
+            dispatch({type: 'DONE'});
+          } else {
+            setProduct(null);
+            dispatch({type: 'DONE'});
+          }
+        }
+      });
+  }, [userState, dispatch]);
+
+  useEffect(() => {
+    // const getDAta
+    getData();
+  }, [getData]);
+
+  const onPressItem = (item) => {
+    navigation.navigate('AddProduct', {mode: 'edit', data: item});
+  };
 
   return (
     <View style={styles.container}>
-      <Animated.View
-        style={[
-          {
-            transform: [{translateY: translateY}],
-          },
-          styles.header,
-        ]}>
-        <Header
-          navigation={navigation}
-          text="Product"
-          header={HEADER_HEIGHT}
-          back
-        />
-      </Animated.View>
+      <Header
+        navigation={navigation}
+        text="Product"
+        header={HEADER_HEIGHT}
+        back
+        add={() => navigation.navigate('AddProduct', {mode: 'add'})}
+      />
       <ScrollView
         contentContainerStyle={[
           styles.scroll,
@@ -39,12 +63,9 @@ const Product = ({navigation}) => {
         ]}
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={16}
-        onScroll={(e) => {
-          scrollY.setValue(e.nativeEvent.contentOffset.y);
-        }}
         bounces={false}>
-        <Box padding={0}>
-          <ProductItems />
+        <Box bg={colors.white} padding={12}>
+          <ProductItems data={product} onPress={(item) => onPressItem(item)} />
         </Box>
       </ScrollView>
     </View>
@@ -58,5 +79,5 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   header: {elevation: 2, zIndex: 2000},
-  container: {backgroundColor: colors.background, flex: 1},
+  container: {backgroundColor: colors.white, flex: 1},
 });

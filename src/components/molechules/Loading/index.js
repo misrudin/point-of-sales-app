@@ -1,16 +1,19 @@
 import React from 'react';
-import {StyleSheet, ActivityIndicator, View, StatusBar} from 'react-native';
-import {colors} from '../../../utils';
+import {StyleSheet, View, StatusBar} from 'react-native';
 import {Label, Spacer} from '../../atoms';
+import {Loading5} from '../../../assets';
+import LottieView from 'lottie-react-native';
 
 const LoadingComponent = () => {
   return (
     <View style={styles.containerLoading}>
       <StatusBar backgroundColor="rgba(0,0,0,.0)" animated />
       <View style={styles.boxLoading}>
-        <ActivityIndicator size="small" color={colors.error} animating />
-        <Spacer h={5} />
-        <Label text="Loading ..." />
+        <View style={styles.loadingElement}>
+          <LottieView source={Loading5} autoPlay loop />
+        </View>
+        <Spacer h={0} />
+        <Label text="Loading ..." color={'#fff'} />
       </View>
     </View>
   );
@@ -28,7 +31,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,.0)',
   },
   boxLoading: {
-    backgroundColor: '#fff',
+    backgroundColor: 'rgba(0,0,0,.9)',
     width: 150,
     height: 80,
     borderRadius: 5,
@@ -38,11 +41,16 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 0,
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+    shadowOpacity: 0,
+    shadowRadius: 0,
 
-    elevation: 5,
+    elevation: 10,
+  },
+
+  loadingElement: {
+    height: 50,
+    width: 50,
   },
 });

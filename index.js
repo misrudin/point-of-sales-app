@@ -13,6 +13,7 @@ import {Loading} from './src/components';
 
 import {Provider, useSelector} from 'react-redux';
 import store from './src/redux';
+console.disableYellowBox = true;
 
 const MainApp = () => {
   const state = useSelector((value) => value.appState);
@@ -30,7 +31,7 @@ const WrapperApp = () => {
     <Provider store={store}>
       <StatusBar
         animated
-        backgroundColor={colors.background}
+        backgroundColor={'rgb(18,134,255)'}
         barStyle="dark-content"
         translucent={true}
       />

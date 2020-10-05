@@ -104,8 +104,6 @@ const MainStack = () => {
   const state = useSelector((value) => value.appState);
   const authstate = useSelector((value) => value.authState);
 
-  console.log(authstate);
-
   if (state.splash) {
     return <SplashScreen />;
   }
@@ -141,11 +139,7 @@ const MainStack = () => {
         />
       ) : (
         <>
-          <Stack.Screen
-            name="MainMenu"
-            component={TabNavigator}
-            options={{cardStyleInterpolator: forSlide}}
-          />
+          <Stack.Screen name="MainMenu" component={TabNavigator} />
           <Stack.Screen
             name="Profile"
             component={Profile}

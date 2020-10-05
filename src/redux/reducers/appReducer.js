@@ -8,12 +8,17 @@ const appReducer = (state = initialValue, action) => {
     case 'LOADING':
       return {
         ...state,
-        loading: !state.loading,
+        loading: true,
+      };
+    case 'DONE':
+      return {
+        ...state,
+        loading: false,
       };
     case 'SPLASH':
       return {
         ...state,
-        splash: !state.splash,
+        splash: false,
       };
 
     default:

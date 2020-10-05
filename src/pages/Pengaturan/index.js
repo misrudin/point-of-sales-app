@@ -2,37 +2,20 @@ import React from 'react';
 import {StyleSheet, ScrollView, StatusBar, View} from 'react-native';
 import {Box, Spacer} from '../../components';
 import {Header} from '../../templates';
-import Animated from 'react-native-reanimated';
 import {colors} from '../../utils';
 
 const HEADER_HEIGHT = 50 + StatusBar.currentHeight;
-const {diffClamp, interpolate} = Animated;
 
 const Pengaturan = ({navigation}) => {
-  const scrollY = new Animated.Value(0);
-  const diffClampY = diffClamp(scrollY, 0, HEADER_HEIGHT);
-  const translateY = interpolate(diffClampY, {
-    inputRange: [0, HEADER_HEIGHT],
-    outputRange: [0, -HEADER_HEIGHT],
-  });
-
   return (
     <View style={styles.container}>
-      <Animated.View
-        style={[
-          {
-            transform: [{translateY: translateY}],
-          },
-          styles.header,
-        ]}>
-        <Header
-          navigation={navigation}
-          text="Pengaturan"
-          header={HEADER_HEIGHT}
-          noshadow
-          bg={colors.white}
-        />
-      </Animated.View>
+      <Header
+        navigation={navigation}
+        text="Pengaturan"
+        header={HEADER_HEIGHT}
+        bg={'#fff'}
+      />
+
       <ScrollView
         contentContainerStyle={[
           styles.scroll,
@@ -40,9 +23,6 @@ const Pengaturan = ({navigation}) => {
         ]}
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={16}
-        onScroll={(e) => {
-          scrollY.setValue(e.nativeEvent.contentOffset.y);
-        }}
         bounces={false}>
         <Box bg={colors.white}>
           <Spacer h={10000} />

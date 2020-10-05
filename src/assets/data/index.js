@@ -2,22 +2,50 @@ export const dataMenuHome = [
   {
     id: 1,
     name: 'Transaksi',
-    link: 'Dashboard',
+    link: 'Transaction',
+    icon: 'cart-plus',
   },
   {
     id: 2,
-    name: 'Laporan Harian',
-    link: 'Dashboard',
+    name: 'Laporan',
+    link: 'LaporanPenjualan',
+    icon: 'chart-area',
   },
   {
     id: 3,
     name: 'Karyawan',
-    link: 'Dashboard',
+    link: 'DataKaryawan',
+    icon: 'users',
   },
   {
     id: 4,
-    name: 'Management Stok',
+    name: 'Stok',
+    link: 'Stock',
+    icon: 'database',
+  },
+  {
+    id: 5,
+    name: 'Product',
+    link: 'Product',
+    icon: 'layer-group',
+  },
+  {
+    id: 6,
+    name: 'Pelanggan',
+    link: 'DataPelanggan',
+    icon: 'person-booth',
+  },
+  {
+    id: 7,
+    name: 'My Store',
     link: 'Dashboard',
+    icon: 'store',
+  },
+  {
+    id: 8,
+    name: 'Scan',
+    link: 'Dashboard',
+    icon: 'barcode',
   },
 ];
 
