@@ -1,11 +1,11 @@
 import React from 'react';
 import {StyleSheet, View, Image, TouchableOpacity} from 'react-native';
-import {Spacer, Label} from '../index';
+import {Label, Spacer} from '../../atoms';
 import {Laptop} from '../../../assets';
 
-const Employee = ({data, onPress}) => {
+const Pelanggan = ({data, onPress}) => {
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
+    <TouchableOpacity style={styles.container} onPress={() => onPress(data)}>
       <Image source={Laptop} style={styles.image} />
       <Spacer w={10} />
       <View style={styles.detail}>
@@ -17,22 +17,25 @@ const Employee = ({data, onPress}) => {
   );
 };
 
-export default React.memo(Employee);
+export default Pelanggan;
 
 const styles = StyleSheet.create({
+  image: {
+    width: 100,
+    height: 100,
+    borderRadius: 4,
+  },
+
   container: {
-    width: '50%',
-    height: 150,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
     flexDirection: 'row',
+    backgroundColor: '#fff',
+    width: '100%',
+    borderRadius: 4,
     marginBottom: 10,
   },
-  imageContainer: {
-    width: 130,
-    height: '100%',
-    borderRadius: 8,
-    overflow: 'hidden',
+
+  detail: {
+    paddingVertical: 10,
+    paddingRight: 10,
   },
-  image: {width: '100%', height: '100%'},
 });

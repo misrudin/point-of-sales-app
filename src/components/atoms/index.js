@@ -11,6 +11,7 @@ import TransactionItems from './TransactionItems';
 import ProductItem from './ProductItem';
 import Picker from './Picker';
 import Employee from './Employee';
+import ItemSearch from './ItemSearch';
 
 export {
   Spacer,
@@ -26,4 +27,5 @@ export {
   ProductItem,
   Picker,
   Employee,
+  ItemSearch,
 };

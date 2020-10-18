@@ -9,11 +9,11 @@ import DataKaryawan from './DataKaryawan';
 import LaporanPenjualan from './LaporanPenjualan';
 import Pengaturan from './Pengaturan';
 import Product from './Product';
+import Pelanggan from './Pelanggan';
 
 import AddKaryawan from './AddKaryawan';
 import AddProduct from './AddProduct';
 import EditKaryawan from './EditKaryawan';
-import EditProduct from './EditProduct';
 import EditProfile from './EditProfile';
 import EditStore from './EditStore';
 import Print from './Print';
@@ -36,11 +36,11 @@ export {
   AddKaryawan,
   AddProduct,
   EditKaryawan,
-  EditProduct,
   EditProfile,
   EditStore,
   Print,
   Scan,
   Stok,
   Transaction,
+  Pelanggan,
 };

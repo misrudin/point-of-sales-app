@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import Ripple from 'react-native-material-ripple';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {Label, Spacer} from '../../components';
@@ -44,12 +44,12 @@ function MyTabBar({state, descriptors, navigation}) {
         };
 
         return (
-          <Ripple
+          <TouchableOpacity
             style={styles.tabBarButton(index, state.routes, isFocused)}
-            // accessibilityRole="button"
-            // accessibilityStates={isFocused ? ['selected'] : []}
-            // accessibilityLabel={options.tabBarAccessibilityLabel}
-            // testID={options.tabBarTestID}
+            accessibilityRole="button"
+            accessibilityStates={isFocused ? ['selected'] : []}
+            accessibilityLabel={options.tabBarAccessibilityLabel}
+            testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}>
             <Icon
@@ -66,7 +66,7 @@ function MyTabBar({state, descriptors, navigation}) {
               color={isFocused ? '#FFA480' : '#A3C3FB'}
               size={10}
             />
-          </Ripple>
+          </TouchableOpacity>
         );
       })}
     </View>

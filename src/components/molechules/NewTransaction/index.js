@@ -2,23 +2,22 @@ import React from 'react';
 import {StyleSheet, View, FlatList} from 'react-native';
 
 import {TransactionItems} from '../../atoms';
-import {dataDummy} from '../../../assets';
 
-const NewTransaction = () => {
+const NewTransaction = ({data}) => {
   return (
     <View style={styles.containerView}>
       <FlatList
-        data={dataDummy}
+        data={data}
         renderItem={({item, index}) => (
           <TransactionItems data={item} index={index} />
         )}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(_, index) => index.toString()}
       />
     </View>
   );
 };
 
-export default React.memo(NewTransaction);
+export default NewTransaction;
 
 const styles = StyleSheet.create({
   containerView: {

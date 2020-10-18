@@ -8,6 +8,7 @@ import MainMenu from './MainMenu';
 import NewTransaction from './NewTransaction';
 import ProductItems from './ProductItems';
 import Employees from './Employees';
+import Pelanggan from './Pelanggan';
 
 export {
   Loading,
@@ -20,4 +21,5 @@ export {
   NewTransaction,
   ProductItems,
   Employees,
+  Pelanggan,
 };

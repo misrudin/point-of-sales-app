@@ -40,6 +40,10 @@ const DataKaryawan = ({navigation}) => {
     getData();
   }, [getData]);
 
+  const onPressItem = (item) => {
+    navigation.navigate('AddKaryawan', {mode: 'edit', data: item});
+  };
+
   return (
     <View style={styles.container}>
       <Header
@@ -47,7 +51,7 @@ const DataKaryawan = ({navigation}) => {
         text="Data Karyawan"
         header={HEADER_HEIGHT}
         back
-        add={() => navigation.navigate('AddKaryawan')}
+        add={() => navigation.navigate('AddKaryawan', {mode: 'add'})}
       />
 
       <ScrollView
@@ -59,7 +63,7 @@ const DataKaryawan = ({navigation}) => {
         scrollEventThrottle={16}
         bounces={false}>
         <Box bg={colors.white}>
-          <Employees data={employees} />
+          <Employees data={employees} onPress={(e) => onPressItem(e)} />
         </Box>
       </ScrollView>
     </View>

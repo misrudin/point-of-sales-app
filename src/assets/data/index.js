@@ -32,7 +32,7 @@ export const dataMenuHome = [
   {
     id: 6,
     name: 'Pelanggan',
-    link: 'DataPelanggan',
+    link: 'Pelanggan',
     icon: 'person-booth',
   },
   {
@@ -45,7 +45,7 @@ export const dataMenuHome = [
     id: 8,
     name: 'Scan',
     link: 'Dashboard',
-    icon: 'barcode',
+    icon: 'qrcode',
   },
 ];
 

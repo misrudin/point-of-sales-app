@@ -5,6 +5,7 @@ import {
   StatusBar,
   View,
   Dimensions,
+  TouchableOpacity,
 } from 'react-native';
 import {Box, Label, MainMenu, Spacer, NewTransaction} from '../../components';
 import {colors} from '../../utils';
@@ -41,10 +42,12 @@ const MainApp = ({navigation}) => {
         <Spacer h={20} />
         <Box bg={colors.white}>
           <MainMenu navigation={navigation} />
-          <Spacer h={20} />
-          <Label text="Transaksi terbaru" />
-          <Spacer h={5} />
-          <NewTransaction />
+          <Spacer h={100} />
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Transaction')}
+            style={styles.buttonTransaksi}>
+            <Label text="MULAI TRANSAKSI" weight="bold" color="#fff" />
+          </TouchableOpacity>
         </Box>
       </ScrollView>
     </View>
@@ -68,4 +71,13 @@ const styles = StyleSheet.create({
   },
   container: {backgroundColor: colors.white, flex: 1},
   lotie: {width: '100%', height: '100%'},
+
+  buttonTransaksi: {
+    backgroundColor: '#0278ae',
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 15,
+    borderRadius: 5,
+  },
 });

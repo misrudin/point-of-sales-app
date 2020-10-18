@@ -14,6 +14,7 @@ const Header = ({
   bg = '#fff',
   edit,
   add,
+  onBack,
 }) => {
   return (
     <View style={[styles.container(noshadow, bg), {height: header}]}>
@@ -29,8 +30,19 @@ const Header = ({
         <TouchableOpacity
           style={styles.button}
           activeOpacity={0.3}
-          onPress={() => back && navigation.goBack()}>
-          <Icon name={back && 'arrow-left'} color={colors.dark1} size={18} />
+          onPress={() =>
+            back ? navigation.goBack() : onBack ? onBack() : null
+          }>
+          {back && (
+            <Icon name={back && 'arrow-left'} color={colors.dark1} size={18} />
+          )}
+          {onBack && (
+            <Icon
+              name={onBack && 'arrow-left'}
+              color={colors.dark1}
+              size={18}
+            />
+          )}
         </TouchableOpacity>
       </View>
       <View style={styles.title}>

@@ -22,12 +22,14 @@ const AddKaryawan = ({navigation, route}) => {
 
   const dispatch = useDispatch();
 
-  const [kodeOtomatis, setKodeOtomatis] = useState(0);
+  const mode = route.params.mode;
 
   useEffect(() => {
-    const kode = `${new Date().getTime()}`;
-    setKodeOtomatis(kode);
-  }, []);
+    if (mode && mode === 'add') {
+      const kode = `${new Date().getTime()}`;
+      setForm('kode', kode);
+    }
+  }, [mode]);
 
   const _onAddKaryawan = () => {
     dispatch({type: 'LOADING'});
@@ -70,7 +72,12 @@ const AddKaryawan = ({navigation, route}) => {
 
             <Label text="Kode" size={14} weight="bold" />
             <Spacer h={5} />
-            <Input placeholder="Kode" icon="list" value={kodeOtomatis} />
+            <Input
+              placeholder="Kode"
+              icon="list"
+              onChange={(e) => setForm('kode', e)}
+              value={form.kode}
+            />
 
             <Spacer h={10} />
             <Label text="Nama" size={14} weight="bold" />

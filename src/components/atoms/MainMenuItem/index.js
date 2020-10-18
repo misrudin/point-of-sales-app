@@ -1,7 +1,6 @@
 import React from 'react';
-import {StyleSheet, View, Dimensions} from 'react-native';
+import {StyleSheet, View, Dimensions, TouchableOpacity} from 'react-native';
 import {Label, Spacer} from '../index';
-import Ripple from 'react-native-material-ripple';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 const {width} = Dimensions.get('window');
 
@@ -9,7 +8,7 @@ const MainMenuItem = ({data, navigation, index}) => {
   return (
     <>
       <View style={styles.viewContainer(index)}>
-        <Ripple
+        <TouchableOpacity
           onPress={() => navigation.navigate(data.link)}
           style={styles.constinerItemMenu}>
           <Icon
@@ -27,7 +26,7 @@ const MainMenuItem = ({data, navigation, index}) => {
           />
           <Spacer h={10} w={10} />
           <Label text={data.name} weight="bold" color="#0f3057" size={12} />
-        </Ripple>
+        </TouchableOpacity>
       </View>
       {(index !== 3 || index !== 7) && <Spacer h={10} w={10} />}
     </>

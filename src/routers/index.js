@@ -1,12 +1,10 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 const Tab = createBottomTabNavigator();
 
 const Stack = createStackNavigator();
-const Drawer = createDrawerNavigator();
 
 import {
   Main,
@@ -23,31 +21,18 @@ import {
   AddProduct,
   AddKaryawan,
   EditStore,
-  EditProduct,
   EditKaryawan,
   EditProfile,
   Stok,
   Print,
   Scan,
   Transaction,
+  Pelanggan,
 } from '../pages';
 import {TabBar} from '../templates';
-import {Animated, Settings} from 'react-native';
+import {Animated} from 'react-native';
 import {useSelector} from 'react-redux';
 
-// membuat drawer navigation
-// const DrawerNavigation = () => {
-//   return (
-//     <Drawer.Navigator
-//       drawerPosition="left"
-//       minSwipeDistance={10}
-//       drawerContent={(props) => <Menu {...props} />}>
-//       <Drawer.Screen name="Home" component={Main} />
-//     </Drawer.Navigator>
-//   );
-// };
-
-// tab navigator
 const TabNavigator = () => {
   return (
     <Tab.Navigator
@@ -187,11 +172,6 @@ const MainStack = () => {
             options={{cardStyleInterpolator: forSlide}}
           />
           <Stack.Screen
-            name="EditProduct"
-            component={EditProduct}
-            options={{cardStyleInterpolator: forSlide}}
-          />
-          <Stack.Screen
             name="EditProfile"
             component={EditProfile}
             options={{cardStyleInterpolator: forSlide}}
@@ -219,6 +199,11 @@ const MainStack = () => {
           <Stack.Screen
             name="Transaction"
             component={Transaction}
+            options={{cardStyleInterpolator: forSlide}}
+          />
+          <Stack.Screen
+            name="Pelanggan"
+            component={Pelanggan}
             options={{cardStyleInterpolator: forSlide}}
           />
         </>
